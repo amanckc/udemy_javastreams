@@ -16,5 +16,6 @@ public class Lecture12 {
         .collect(Collectors.toList());
 
     emails.forEach(System.out::println);
+    
   }
 }
