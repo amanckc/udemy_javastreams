@@ -37,10 +37,6 @@ public class Lecture5 {
 //        })
         .map(PersonDTO::map)
         .collect(Collectors.toList());
-
-    //collectDTO.forEach(System.out::println);
-
-    //assertThat()
     System.out.println(collectDTOs.size());
   }
 
@@ -52,7 +48,9 @@ public class Lecture5 {
         .mapToDouble(Car::getPrice)
         .average()
         .orElse(0);
-    System.out.println(average);
+    	System.out.println(average);
+    
+    
 
 
   }

@@ -4,6 +4,8 @@ package lectures;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import beans.Car;
+import beans.Person;
+
 import com.google.common.collect.ImmutableList;
 import java.math.BigDecimal;
 import java.util.DoubleSummaryStatistics;
@@ -16,35 +18,59 @@ public class Lecture7 {
 
   @Test
   public void count() throws Exception {
-
+	 long femaleCount =MockData.getPeople()
+	  .stream()
+	  .filter(person->person.getGender().equalsIgnoreCase("female"))
+	.count();
+	 System.out.println(femaleCount);
   }
 
   @Test
   public void min() throws Exception {
-
+	  double min=MockData.getCars()
+	  .stream()
+	  .filter(car->car.getColor().equalsIgnoreCase("yellow"))
+	  .mapToDouble(Car::getPrice)
+	  .min()
+	  .getAsDouble();
+	//  .count();
+	  System.out.println("min=="+min);
   }
 
   @Test
   public void max() throws Exception {
+	  double max=MockData.getCars()
+			  .stream()
+			  .filter(Car->Car.getColor().equalsIgnoreCase("yellow"))
+			  .mapToDouble(Car::getPrice)
+			  .max()
+			  .getAsDouble();
+	  
+	  System.out.println("max=="+max);
 
   }
 
 
   @Test
   public void average() throws Exception {
-    List<Car> cars = MockData.getCars();
 
+    List<Car> cars = MockData.getCars();
+    double averagePrice=cars.stream()
+    .mapToDouble(Car::getPrice)
+    .average()
+    .orElse(0);
+    System.out.println(averagePrice);
   }
 
   @Test
   public void sum() throws Exception {
     List<Car> cars = MockData.getCars();
-    double sum = cars.stream()
+    double sumofAll = cars.stream()
         .mapToDouble(Car::getPrice)
         .sum();
-    BigDecimal bigDecimalSum = BigDecimal.valueOf(sum);
-    System.out.println(sum);
-    System.out.println(bigDecimalSum);
+    BigDecimal bigDeciSum = BigDecimal.valueOf(sumofAll);
+    System.out.println(sumofAll);
+    System.out.println(bigDeciSum);
 
   }
 
